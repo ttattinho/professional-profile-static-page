@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Renato Rodrigues — Projetos</title>
+  <style>
+    :root {
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --accent: #6c63ff;
+      --accent-2: #2b7ee6;
+      --radius: 12px;
+      --gap: 12px;
+      --text-muted: #555;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html {
+      height: 100%;
+      scroll-behavior: smooth;
+      background: linear-gradient(135deg, #071022 0%, #0b2a4a 35%, #2b7ee6 70%, #6c63ff 100%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: Inter, Arial, sans-serif;
+      color: #111;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 40px 16px;
+      overflow-y: auto;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 10, 18, 0.08);
+      pointer-events: none;
+    }
+    .container {
+      background: var(--card-bg);
+      padding: 28px;
+      border-radius: var(--radius);
+      box-shadow: 0 12px 40px rgba(12, 20, 30, 0.18);
+      max-width: 1100px;
+      width: 94%;
+      margin: 0 auto;
+      transform: translateY(18px) scale(0.995);
+      opacity: 0;
+      transition: transform 550ms cubic-bezier(.2, .9, .3, 1), opacity 550ms ease;
+      will-change: transform, opacity;
+    }
+    .container.visible { transform: translateY(0) scale(1); opacity: 1; }
+    header.page-header {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .avatar {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 8px 26px rgba(10, 20, 30, 0.12);
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      background: #ddd;
+      flex: 0 0 92px;
+    }
+    .title-wrap { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    h1 { margin: 0; font-size: 22px; word-break: break-word; color: #111; }
+    p.lead { margin: 0; color: var(--text-muted); }
+    nav.top-actions { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .btn {
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      background: linear-gradient(90deg, var(--accent), #5a50f0);
+      box-shadow: 0 8px 20px rgba(12, 20, 30, 0.08);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(12, 20, 30, 0.12); }
+    main { margin-top: 18px; display: block; }
+    .content { width: 100%; }
+    .content p,
+    .section p { text-align: justify; color: var(--text-muted); line-height: 1.6; margin: 0 0 12px 0; }
+    .section { margin-bottom: 18px; }
+    .section h2 { margin: 0 0 12px 0; font-size: 20px; color: var(--accent-2); }
+    .index {
+      margin: 20px 0 30px 0;
+      padding: 16px;
+      background: rgba(240,240,255,0.7);
+      border-radius: var(--radius);
+    }
+    .index h3 { margin-top: 0; font-size: 18px; color: var(--accent); }
+    .index ul { margin: 0; padding-left: 18px; }
+    .index a { color: var(--accent-2); text-decoration: none; }
+    .index a:hover { text-decoration: underline; }
+    footer { text-align: center; margin-top: 14px; color: #999; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-labelledby="proj-title">
+    <header class="page-header">
+      <img class="avatar" src="avatar.png" alt="Avatar de Renato Rodrigues" loading="lazy" width="92" height="92">
+      <div class="title-wrap">
+        <h1 id="proj-title">Projetos — Renato Rodrigues</h1>
+        <p class="lead">Analista de Nuvem • Infraestrutura • Suporte • SysAdmin • BI e Automação</p>
+        <nav class="top-actions" aria-label="Ações da página">
+          <a class="btn" href="index.html">← Voltar</a>
+          <a class="btn" href="curriculum.pdf" target="_blank" rel="noopener">📄 Baixar CV</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="index">
+        <h3>Índice de Projetos</h3>
+        <ul>
+          <li><a href="#proj1">Criação de Página Estática de Perfil Profissional</a></li>
+          <li><a href="#proj2">Integração do Ambiente Azure com Sede da Empresa</a></li>
+          <li><a href="#proj3">Automação e Monitoramento do Ambiente Crítico de QlikView</a></li>
+          <li><a href="#proj4">Expansão de Automações para Ambientes e Serviços Corporativos</a></li>
+          <li><a href="#proj5">Migração Lift-and-Shift para Cloud (Hyper-V → GCP/Azure)</a></li>
+          <li><a href="#proj6">Dashboard Gerencial de Tempo de Resposta de Emails — Financeiro</a></li>
+          <li><a href="#proj7">Dashboard Comercial e Negociações — RD Station</a></li>
+          <li><a href="#proj8">Dashboard de Controle de Inventário e Licenças</a></li>
+          <li><a href="#proj9">Mapeamento de Inconsistências de Licenças — QlikView e QlikSense</a></li>
+          <li><a href="#proj10">Automatização do Active Directory Híbrido — Grupos Dinâmicos e Provisionamento</a></li>
+          <li><a href="#proj11">Projeto de Imersão em Redes e Telecomunicações</a></li>
+        </ul>
+      </div>
+      <section class="content" aria-label="Descrição dos projetos">
+        <article class="section" aria-labelledby="proj1">
+          <h2 id="proj1">Criação de Página Estática de Perfil Profissional</h2>
+          <p>
+            Este projeto visa a criação de uma página estática para a apresentação do meu perfil profissional, utilizando infraestrutura em nuvem da AWS.
+            Foram usadas diversas tecnologias e serviços: Amazon S3 para hospedagem dos arquivos estáticos, CloudFront para distribuição de conteúdo com alta disponibilidade e baixa latência,
+            Route 53 para gerenciamento de domínio e ACM (AWS Certificate Manager) para segurança SSL/TLS. As páginas foram criadas com HTML, CSS e JavaScript, empregando as melhores práticas
+            de desenvolvimento web. Além disso, utilizei Inteligência Artificial durante o desenvolvimento para auxiliar na criação do código e realizar a tradução do conteúdo para o inglês,
+            permitindo um alcance mais global.
+          </p>
+          <p>
+            <strong>Tecnologias Utilizadas:</strong> AWS S3, CloudFront, Route 53, ACM, HTML, CSS, JavaScript, IA para desenvolvimento e tradução.
+          </p>
+        </article>
+        <article class="section" aria-labelledby="proj2">
+          <h2 id="proj2">Integração do Ambiente Azure com Sede da Empresa</h2>
+          <p>
+            Neste projeto, realizamos a interligação do ambiente Azure com a sede da empresa através do Virtual Gateway para VPNs site-to-site com BGP em um modelo ativo-ativo, cruzando os links com firewalls Barracuda e configurando pesos nos links de contingência. 
+            Foi criada uma nova instância de ADDS com Windows Server 2025 no Azure, adicionamos os serviço na floresta elevando o nível de operação. Migramos o EntraID Connect para a nova instância de ADDS e propagamos todas as redes do azure via BGP também para outras redes de datacenters 
+            parceiros, chegando até as redes do nosso outro ambiente de cloud no GCP. No servidor de AD no Azure, configuramos o gateway de dados do Power BI para que os dataflows pudessem acessar endpoints privados como bancos de dados, compartilhamentos Samba, Trino, MongoDB, entre outros.
+            Toda a infraestrutura de VPN foi devidamente etiquetada e alocada em grupos de recursos separados, e conectada por peering às VPNs.
+          </p>
+          <p>
+            <strong>Tecnologias Utilizadas:</strong> Azure, Azure Virtual Gateway, BGP, Barracuda Firewall, ADDS, Windows Server 2025, Azure AD Connect, Power BI, GCP.
+          </p>
+        </article>
+        <article class="section" aria-labelledby="proj3">
+            <h2 id="proj3">Automação e Monitoramento do Ambiente Crítico de QlikView</h2>
+            <p>
+                O QlikView era o motor dos principais produtos da empresa, acessado diariamente por clientes externos para geração de relatórios e dashboards críticos de negócio. 
+                A infraestrutura estava baseada em um <strong>cluster de failover Windows Server com 3 nós</strong> conectado a um <strong>storage compartilhado</strong>. 
+                Embora fosse projetado para alta disponibilidade, na prática este ambiente legado apresentava diversas fragilidades.
+            </p>
+            <p>
+                As principais dores incluíam: processos manuais de manutenção preventiva e corretiva, validações demoradas de cluster e balanceamento de carga, dificuldades no 
+                restabelecimento de serviços em caso de falhas e monitoramento limitado, que muitas vezes só identificava problemas após reclamações de clientes. Isso exigia 
+                plantões constantes (inclusive em fins de semana), tornando o QlikView o elo mais frágil da operação e gerando alto risco de indisponibilidade para os clientes.
+            </p>
+            <p>
+                Foram tentadas soluções intermediárias como checklists manuais e scripts isolados em PowerShell e Bash, mas o ganho foi limitado. 
+                A virada de chave veio com a implementação de um <strong>ecossistema de automação e monitoramento</strong>, orquestrado pelo <strong>Rundeck</strong>, rodando em um servidor Ubuntu no GCP conectado via Interconnect aos datacenters e parceiros.
+            </p>
+            <p>
+                Nesse ambiente foram criados pipelines agendados e manuais, utilizando múltiplas tecnologias: <strong>Bash</strong>, <strong>Python</strong>, <strong>PowerShell</strong>, 
+                <strong>Node.js com Puppeteer</strong>, <strong>Ansible (playbooks e ad-hoc via SSH e WinRM)</strong>. Entre as automações implementadas estão:
+            </p>
+            <ul>
+                <li>Reboots monitorados e forçados via iDRAC em caso de falha.</li>
+                <li>Movimentação automática de Cluster Shared Volumes (CSV) para manter continuidade.</li>
+                <li>Subida e validação de serviços pós-reboot.</li>
+                <li>Validação de integridade via endpoints de health do QlikView Server.</li>
+                <li>Testes de balanceamento de carga com tráfego artificial gerado via Puppeteer.</li>
+                <li>Error handlers encadeados para reinício de serviços web e recuperação de cluster.</li>
+                <li>Monitoramento contínuo em Python, validando carregamento de produtos e disparando alertas via e-mail e Microsoft Teams.</li>
+                <li>Reconhecimento de falhas conhecidas por hash de prints de erro e execução de correções automáticas.</li>
+            </ul>
+            <p>
+                Além disso, foi implementado uso de <strong>cofre de senhas no Rundeck</strong> para proteção de credenciais e chaves, e 
+                <strong>variáveis declaradas nos Jobs</strong>, garantindo reaproveitamento de código e maior padronização. Todos os scripts incluíam timeouts, retries e 
+                mecanismos antifalha.
+            </p>
+            <p>
+                Os logs e status dos Jobs foram integrados a pipelines de dados no Power BI Service, via Gateway, criando dashboards de falhas e disponibilidade em tempo real. 
+                O código foi versionado no Azure DevOps, com documentação em Markdown para cada Job e script.
+            </p>
+            <p>
+                O resultado foi transformador: a disponibilidade saltou para <strong>99,997%</strong>, eliminamos plantões manuais e ganhamos previsibilidade e visibilidade total 
+                sobre o ambiente. O time pôde focar em novos projetos estratégicos, enquanto o ambiente legado de QlikView deixou de ser um gargalo crítico. 
+                O sucesso foi tão grande que a mesma abordagem foi expandida para os servidores de QlikSense, também com melhorias significativas.
+            </p>
+            <p>
+                <strong>Tecnologias Utilizadas:</strong> Rundeck, Ubuntu Server (GCP), Bash, Python, PowerShell, Node.js, Puppeteer, Ansible (SSH/WinRM), iDRAC, Power BI, Azure DevOps.
+            </p>
+        </article>
+        <article class="section" aria-labelledby="proj4">
+            <h2 id="proj4">Expansão de Automações para Ambientes e Serviços Corporativos</h2>
+            <p>
+                Com o sucesso do projeto de automação no ambiente legado de QlikView, decidimos expandir a abordagem para todos os demais ambientes e serviços críticos da empresa. 
+                O <strong>servidor Ubuntu com Rundeck</strong>, hospedado no GCP e conectado ao projeto de Interconnect com <strong>BGP</strong>, já possuía acesso a todos os ambientes 
+                corporativos, o que permitiu centralizar e padronizar a execução das automações.
+            </p>
+            <p>
+                A primeira frente foi o <strong>monitoramento de jobs de SQL Server</strong>, que frequentemente apresentavam travamentos. Foram criados pipelines que 
+                validavam a execução de cada job e, em caso de detecção de travamento, aplicavam automaticamente as correções baseadas em erros previamente mapeados. 
+                Além da correção gerava a notificação via email e no canal de teams entre a equipe de IT Operations e de Operações que no caso era quem era impactada
+                quando ocorriam os travamentos desses jobs em específico.
+            </p>
+            <p>
+                Também foi implementado <strong>monitoramento ativo de serviços de FTP e SFTP</strong>, incluindo testes de acesso, upload, escrita e conexão, garantindo 
+                que problemas fossem identificados antes de impactarem clientes e parceiros.
+            </p>
+            <p>
+                Outro marco importante foi a criação de <strong>jobs de facilities</strong> que automatizaram tarefas operacionais do dia a dia antes executadas manualmente 
+                por estagiários ou analistas juniores. Isso evitou a necessidade de liberar acessos críticos a portais como GCP, Cloudflare e DNS interno. 
+                Os jobs solicitavam variáveis de entrada, validavam sintaxe e coerência dos dados, e então executavam a tarefa de forma controlada. Exemplos:
+            </p>
+            <ul>
+                <li>Download automatizado de arquivos em buckets do GCP.</li>
+                <li>Cadastro de DNS na Cloudflare, com teste de propagação e geração de evidência para inclusão em chamados.</li>
+                <li>Cadastro de DNS interno, com logs e auditoria.</li>
+            </ul>
+            <p>
+                Para garantir segurança, foram aplicadas <strong>ACLs de execução baseadas em perfis de AD</strong>. Os colaboradores, ao acessarem via LDAP, 
+                visualizavam apenas os jobs permitidos para seu grupo, e ainda assim só conseguiam executá-los se os dados de entrada fossem válidos.
+            </p>
+            <p>
+                A expansão também incluiu <strong>processos integrados ao Power BI Service</strong>: atualizações de dataflows e datasets via API do Power Automate, 
+                acionando steps de pipelines de forma automatizada. Além disso, foram criados jobs de <strong>limpeza de dados em servidores</strong>, 
+                <strong>backups automáticos de logs para buckets no GCP</strong> e muitas outras automações que reduziram esforço manual e aumentaram a confiabilidade da operação.
+            </p>
+            <p>
+                Assim, a empresa evoluiu de um cenário com processos manuais e descentralizados para um ambiente altamente automatizado, com padronização, segurança, 
+                rastreabilidade e escalabilidade. O ganho foi não apenas de disponibilidade e tempo de resposta, mas também de cultura, trazendo automação como pilar central da operação.
+            </p>
+            <p>
+                <strong>Tecnologias Utilizadas:</strong> Rundeck, Ubuntu Server (GCP), Bash, Python, PowerShell, Node.js, Puppeteer, Ansible, SQL Server, FTP/SFTP, 
+                Cloudflare API, GCP Storage, AD/LDAP, Power Automate, Power BI Service.
+            </p>
+        </article>
+        <article class="section" aria-labelledby="proj5">
+            <h2 id="proj5">Migração Lift-and-Shift para Cloud (Hyper-V → GCP/Azure)</h2>
+            <p>
+                Projeto de descontinuação do ambiente on-premises em <strong>Hyper-V</strong> e migração <strong>lift-and-shift</strong> dos principais servidores para a nuvem,
+                mantendo compatibilidade de aplicações e configurando a nova infraestrutura com <strong>IP estático, snapshots automáticos</strong> e integrações preservadas.
+                Escopo principal: <strong>Rundeck</strong> e <strong>Bookstack (KB)</strong> migrados para <strong>GCP</strong>; <strong>OCS Inventory NG</strong> migrado para <strong>Azure</strong>.
+            </p>
+
+            <p><strong>Planejamento e Preparação</strong></p>
+            <ul>
+                <li>Levantamento de servidores, dependências e mapeamento de aplicações no Hyper-V.</li>
+                <li>Definição de <strong>arquitetura de rede</strong> e <strong>endereço IP estático</strong> por workload nos destinos.</li>
+                <li>Criação de <strong>buckets GCP</strong> específicos para staging das imagens durante a migração.</li>
+                <li><strong>Orçamentação</strong> completa (armazenamento, VMs, tráfego, licenças) e apresentação às áreas responsáveis.</li>
+            </ul>
+
+            <p><strong>Execução e Conversões</strong></p>
+            <ul>
+                <li>Exportação dos <strong>VHDX</strong> do Hyper-V e upload para os buckets dos projetos de migração.</li>
+                <li><strong>Conversão de discos</strong> para os formatos exigidos pelos destinos (ex.: VHDX → RAW/IMG → compatível GCE/Azure).</li>
+                <li>Provisionamento de VMs no <strong>Google Compute Engine</strong> (Rundeck/Bookstack) e <strong>Azure</strong> (OCS Inventory NG), com IPs estáticos e regras de firewall.</li>
+                <li>Devido à incompatibilidade da versão do Linux do servidor OCS, foi realizada uma <strong>reimplantação da VM Linux</strong> e migração do <strong>MariaDB</strong> para o novo ambiente.</li>
+            </ul>
+
+            <p><strong>Configuração e Testes</strong></p>
+            <ul>
+                <li>Validações de <strong>conectividade</strong> (interna/externa), dependências de banco de dados e integrações.</li>
+                <li>Refatoração de <strong>pipelines de dados</strong> para os novos IPs/hosts, garantindo acesso a bancos e serviços dependentes.</li>
+                <li>Atualização de DNS (Cloudflare e interno) para apontar aos novos IPs e desligamento controlado dos servidores antigos.</li>
+            </ul>
+
+            <p><strong>Ajustes de Serviço e Operação</strong></p>
+            <ul>
+                <li><strong>Atualizações</strong> de SO e pacotes das aplicações durante a migração.</li>
+                <li>Instalação do <strong>Webmin</strong> em todas as instâncias Linux para administração via navegador.</li>
+                <li>Configuração de <strong>snapshots automáticos</strong> para recuperação rápida.</li>
+            </ul>
+
+            <p><strong>Resultados</strong></p>
+            <ul>
+                <li>Consolidação em cloud com <strong>alta disponibilidade</strong> e <strong>recuperação simplificada</strong> via snapshots.</li>
+                <li>Modernização do parque tecnológico e eliminação da dependência de hardware local.</li>
+                <li>Padronização e gestão simplificada via Webmin e pipeline de dados ajustadas.</li>
+                <li>OCS Inventory NG reimplantado e funcionando plenamente no Azure com MariaDB migrado.</li>
+            </ul>
+
+            <p>
+                <strong>Tecnologias Utilizadas:</strong> Hyper-V, VHDX, Google Cloud Platform (Compute Engine, Cloud Storage), Microsoft Azure, IP estático, Cloudflare DNS, DNS interno,
+                Webmin, Linux, Windows Server, LDAP/AD, Rundeck, Bookstack, OCS Inventory NG, MariaDB, snapshots automáticos, pipelines de dados.
+            </p>
+        </article>
+        <article class="section" aria-labelledby="proj6">
+            <h2 id="proj6">Dashboard Gerencial de Monitoramento de Tempo de Resposta de Emails — Área Financeira</h2>
+            <p>
+                Este projeto nasceu da necessidade da área financeira de monitorar e gerenciar o tempo de resposta dos emails enviados para o endereço padrão da equipe.
+                O objetivo era fornecer ao gestor da área uma visão clara sobre SLA, eficiência e atendimento por cliente.
+            </p>
+
+            <p><strong>Planejamento e Concepção</strong></p>
+            <ul>
+                <li>Criação de um <strong>app no Azure EntraID</strong> para autenticação segura e permissões de acesso à API do Exchange.</li>
+                <li>Liberação de permissões necessárias para leitura de metadados de emails, sem expor conteúdos sensíveis.</li>
+                <li>Definição das métricas gerenciais: tempo de resposta, SLA, dia útil, feriados, visão por cliente e por email.</li>
+            </ul>
+
+            <p><strong>ETL e Processamento de Dados</strong></p>
+            <ul>
+                <li>Conexão via API do Exchange para extrair metadados de emails (remetente, destinatário, horário de envio e recebimento, assunto, etc.).</li>
+                <li>Desenvolvimento de <strong>dataflows no Power BI Service</strong> para realizar ETL: filtrar, limpar e transformar os dados para análises relevantes.</li>
+                <li>Aplicação de regras para cálculo de tempo de resposta considerando dias úteis, feriados e SLA definidos pelo gestor.</li>
+            </ul>
+
+            <p><strong>Dashboard Gerencial</strong></p>
+            <ul>
+                <li>Criação de dashboards interativos no Power BI Service, com gráficos, listas detalhadas de emails e indicadores chave (KPI) de performance.</li>
+                <li>Filtros dinâmicos por cliente, email e período.</li>
+                <li>Atualização automática via agendamento, garantindo dados sempre atualizados sem intervenção manual.</li>
+                <li>Métricas calculadas: tempo médio de resposta, emails pendentes, emails respondidos dentro do SLA, desempenho individual por responsável.</li>
+            </ul>
+
+            <p><strong>Resultados e Benefícios</strong></p>
+            <ul>
+                <li>Visibilidade completa do desempenho da equipe financeira no atendimento de emails.</li>
+                <li>Redução do tempo de análise e monitoramento manual pelo gestor.</li>
+                <li>Facilidade de identificação de gargalos e clientes com maiores demandas.</li>
+                <li>Projeto entregue com sucesso, gerando feedback positivo da área e aumento da confiança nas decisões estratégicas baseadas em dados.</li>
+            </ul>
+
+            <p>
+                <strong>Tecnologias Utilizadas:</strong> Azure EntraID, Exchange Online API, Power BI Service, Dataflows Power BI, ETL, dashboards interativos, cálculo de SLA e métricas gerenciais.
+            </p>
+        </article>
+        <article class="section" aria-labelledby="proj7">
+            <h2 id="proj7">Dashboard Comercial e de Negociações — Integração RD Station</h2>
+            <p>
+                Projeto solicitado pela área comercial para suprir lacunas de análise e visões específicas que não eram possíveis diretamente pelo RD Station.
+                O objetivo era gerar insights estratégicos para as áreas Comercial, Financeira e Diretoria, centralizando as informações em dashboards gerenciais no Power BI Service.
+            </p>
+
+            <p><strong>Planejamento e Concepção</strong></p>
+            <ul>
+                <li>Mapeamento de endpoints da API do RD Station relevantes para vendas, negociações e oportunidades.</li>
+                <li>Criação de controles para evitar <strong>rate limits</strong> e excesso de requisições, garantindo estabilidade do processo ETL.</li>
+                <li>Desenvolvimento de um <strong>dashboard de monitoramento de API</strong> com alertas sobre proximidade de limites de requisições, permitindo ação preventiva.</li>
+                <li>Separação de <strong>dataflows dimensão</strong> e <strong>dataflows fato</strong> para organização e unificação posterior no dataset.</li>
+            </ul>
+
+            <p><strong>ETL e Processamento de Dados</strong></p>
+            <ul>
+                <li>Processo de ETL avançado para limpar, transformar e unificar dados, criando medidas e indicadores complexos.</li>
+                <li>Captura histórica das negociações via <strong>Power Automate</strong>, consultando semanalmente a API para obter estados anteriores.</li>
+                <li>Armazenamento em arquivos semi-estruturados JSON no SharePoint, com controle de acesso, evitando complexidade de bancos NoSQL.</li>
+                <li>Mashup dentro dos dataflows do Power BI Service para consolidar dados históricos e atuais, permitindo análise de alterações de datas, valores e negociações.</li>
+            </ul>
+
+            <p><strong>Dashboard e Aplicativo Power BI</strong></p>
+            <ul>
+                <li>Criação de dashboards interativos com KPIs, gráficos e indicadores avançados.</li>
+                <li>Filtros detalhados por vendedor, cliente, negociações perdidas, períodos e outros critérios relevantes.</li>
+                <li>Aplicativo dentro do Power BI Service centralizando todas as análises da área comercial.</li>
+                <li>Atualizações automatizadas via Power Automate, garantindo que dados de servidores compartilhados do Azure fossem atualizados regularmente, mesmo diante de instabilidades.</li>
+            </ul>
+
+            <p><strong>Resultados e Benefícios</strong></p>
+            <ul>
+                <li>Dashboard se tornou referência central para reuniões estratégicas da área comercial.</li>
+                <li>Capacidade de analisar negociações passadas, mudanças de valores e atrasos, fornecendo insights acionáveis.</li>
+                <li>Monitoramento de API garante continuidade do ETL e prevenção de interrupções no fluxo de dados.</li>
+                <li>Suporte a decisões estratégicas de vendas, financeiras e diretoria, tornando o projeto um pilar de análise de dados.</li>
+            </ul>
+
+            <p>
+                <strong>Tecnologias Utilizadas:</strong> Power BI Service, Dataflows Power BI, Power Automate, SharePoint, RD Station API, ETL, JSON, dashboards interativos, KPIs, monitoramento de API.
+            </p>
+        </article>
+        <article class="section" aria-labelledby="proj8">
+            <h2 id="proj8">Dashboard de Controle de Inventário e Licenças — Microsoft 365 e Segurança</h2>
+            <p>
+                Projeto voltado para centralizar e automatizar o controle do inventário de equipamentos e licenças, além de monitorar recursos de segurança como Intune, Defender e Defender for Endpoint Server. 
+                O objetivo era fornecer relatórios gerenciais completos para a área financeira e TI, trazendo visibilidade sobre custos, utilização e inconsistências nos cadastros.
+            </p>
+
+            <p><strong>Planejamento e Concepção</strong></p>
+            <ul>
+                <li>Criação de um <strong>app no Azure EntraID</strong> para autenticação e acesso seguro aos endpoints.</li>
+                <li>Mapeamento de endpoints da Microsoft (usuários, licenças, líderes diretos, cargos e metadados cadastrais).</li>
+                <li>Integração com <strong>MariaDB do OCS Inventory NG</strong>, <strong>API do Bookstack</strong> (KB corporativa) e <strong>Kanbanize</strong> (sistema de cards) para cruzamento de informações.</li>
+                <li>Construção de mashups avançados de dados para consolidar informações de usuários, máquinas, licenças e custos.</li>
+            </ul>
+
+            <p><strong>ETL e Processamento de Dados</strong></p>
+            <ul>
+                <li>Criação de dataflows no <strong>Power BI Service</strong> para transformar, limpar e consolidar os dados.</li>
+                <li>Automatização do cruzamento de dados para gerar relatórios financeiros de rateio de licenças Microsoft 365 e inventário de parque tecnológico, considerando depreciação, garantia, marca, modelo e situação do equipamento.</li>
+                <li>Consulta de endpoint da Microsoft para obter tabela de <strong>SKUID</strong> e gerar nomes amigáveis para relatórios.</li>
+                <li>Desenvolvimento de cálculos por departamento e por usuário, com visão detalhada de custo de recursos e licenças.</li>
+            </ul>
+
+            <p><strong>Monitoramento e Governança de Dados</strong></p>
+            <ul>
+                <li>Implementação de sistema de monitoramento de inconsistências, identificando:
+                <ul>
+                    <li>Nomes fora do padrão</li>
+                    <li>Máquinas sem uso ou depreciadas</li>
+                    <li>Divergência de máquinas atribuídas a mais de uma pessoa</li>
+                    <li>Sistemas operacionais antigos</li>
+                    <li>Usuários sem líder, área ou perfil no KB</li>
+                    <li>Diferenças de nomes no Kanbanize</li>
+                </ul>
+                </li>
+                <li>Alertas diários enviados por email para a equipe responsável, permitindo correção rápida e mantendo o ambiente organizado.</li>
+            </ul>
+
+            <p><strong>Dashboard e Relatórios</strong></p>
+            <ul>
+                <li>Criação de dashboards interativos publicados no <strong>SharePoint</strong>, permitindo visualização detalhada do inventário, licenças e custos.</li>
+                <li>Relatórios gerenciados e automatizados para a área financeira, com distribuição programada.</li>
+                <li>Indicadores de compliance e saúde do inventário, aumentando a governança e reduzindo erros cadastrais.</li>
+            </ul>
+
+            <p><strong>Resultados e Benefícios</strong></p>
+            <ul>
+                <li>Visibilidade completa do parque tecnológico e licenças Microsoft 365, com detalhamento de custos e utilização.</li>
+                <li>Detecção proativa de inconsistências e problemas cadastrais, evitando falhas em auditorias e processos financeiros.</li>
+                <li>Automatização de relatórios e dashboards, reduzindo tempo manual de compilação e análise de dados.</li>
+                <li>Centralização da informação em dashboards e SharePoint, permitindo decisões estratégicas mais rápidas e confiáveis.</li>
+            </ul>
+
+            <p>
+                <strong>Tecnologias Utilizadas:</strong> Azure EntraID, Power BI Service, Dataflows Power BI, MariaDB (OCS Inventory), Bookstack API, Kanbanize API, SharePoint, dashboards interativos, monitoramento de inconsistências, ETL avançado.
+            </p>
+        </article>
+        <article class="section" aria-labelledby="proj9">
+            <h2 id="proj9">Mapeamento de Inconsistências de Licenças — QlikView e QlikSense</h2>
+            <p>
+                Projeto voltado para identificar e corrigir inconsistências na atribuição de licenças do QlikView e QlikSense, evitando estouro de licenças contratadas e garantindo que usuários ativos tenham acesso correto.
+            </p>
+
+            <p><strong>Planejamento e Concepção</strong></p>
+            <ul>
+                <li>Identificação de problemas: usuários desativados ainda com licenças atribuídas e usuários ativos sem licença.</li>
+                <li>Definição de processos de extração e cruzamento de dados entre sistemas para gerar relatórios de inconsistências.</li>
+            </ul>
+
+            <p><strong>Automação com Rundeck</strong></p>
+            <ul>
+                <li>Todos os relatórios foram extraídos através de <strong>jobs no Rundeck</strong>, garantindo execução programada e manual quando necessário.</li>
+                <li>Relatórios de usuários do Active Directory e das aplicações eram coletados automaticamente e salvos em compartilhamentos Samba ou arquivos CSV.</li>
+                <li>Esses dados eram consumidos pelo <strong>Power BI Service</strong> para realizar o cruzamento entre usuários ativos e licenças atribuídas, gerando relatórios paginados consistentes.</li>
+            </ul>
+
+            <p><strong>QlikSense</strong></p>
+            <ul>
+                <li>Rundeck conectava ao banco de dados PostgreSQL do QlikSense e extraía os usuários com licenças.</li>
+                <li>Os relatórios eram combinados com os usuários ativos das OUs do AD, enviados para o Power BI Service via Data Gateway Azure.</li>
+                <li>Geração de relatórios paginados diários, distribuídos para a equipe responsável para correção proativa de licenças.</li>
+            </ul>
+
+            <p><strong>QlikView</strong></p>
+            <ul>
+                <li>Como não havia API nem banco de dados, foi criado um script em <strong>Node.js com Puppeteer</strong> para acessar o QMC, navegar até os usuários com licenças e exportar a tabela HTML para CSV.</li>
+                <li>CSV era processado da mesma forma: cruzado com AD, consumido pelo Power BI Service e gerado relatório paginado diário.</li>
+            </ul>
+
+            <p><strong>Resultados e Benefícios</strong></p>
+            <ul>
+                <li>Controle efetivo das licenças QlikView e QlikSense, prevenindo estouro de contratos.</li>
+                <li>Automação completa de coleta e processamento de dados via Rundeck, reduzindo falhas manuais.</li>
+                <li>Relatórios consistentes e automáticos no Power BI Service, permitindo ação proativa na manutenção de licenças.</li>
+                <li>Integração com dashboards gerenciais para análise e acompanhamento contínuo.</li>
+            </ul>
+
+            <p>
+                <strong>Tecnologias Utilizadas:</strong> Rundeck, PostgreSQL, Node.js, Puppeteer, Power BI Service, Data Gateway Azure, Active Directory, CSV, automação de relatórios, mashup de dados.
+            </p>
+        </article>
+        <article class="section" aria-labelledby="proj10">
+            <h2 id="proj10">Automatização do Active Directory Híbrido — Grupos Dinâmicos e Provisionamento</h2>
+            <p>
+                Projeto voltado para automatizar a gestão do Active Directory híbrido, criando sincronização de campos extras e permitindo a criação de grupos dinâmicos baseados em regras de metadados de usuários sincronizados.
+            </p>
+
+            <p><strong>Planejamento e Concepção</strong></p>
+            <ul>
+                <li>Sincronização de campos adicionais do AD local para o Azure AD, ampliando possibilidades de automação e provisionamento.</li>
+                <li>Criação de <strong>grupos dinâmicos</strong> com base em regras definidas pelos metadados dos usuários.</li>
+                <li>Automatização do provisionamento de usuários em <strong>SSO e aplicações de terceiros</strong>, incluindo sistemas de autoprovisionamento como o <strong>Cloud Identity do GCP</strong>.</li>
+            </ul>
+
+            <p><strong>Integração com Microsoft 365</strong></p>
+            <ul>
+                <li>Os grupos dinâmicos alimentam tanto <strong>grupos de segurança</strong> quanto <strong>grupos de email</strong> do Microsoft 365.</li>
+                <li>Atribuição automática de licenças Microsoft 365 e Defender for Business com base nos grupos dinâmicos.</li>
+                <li>Implementação de regras de retenção e gerenciamento de limite de grupos de email, prevenindo problemas de recebimento devido a excesso de membros.</li>
+            </ul>
+
+            <p><strong>Automação e Benefícios</strong></p>
+            <ul>
+                <li>Redução de trabalho manual na administração de grupos e licenças.</li>
+                <li>Garantia de consistência e conformidade com políticas de segurança e provisionamento de usuários.</li>
+                <li>Automatização completa de processos de licenciamento, SSO e gerenciamento de grupos, minimizando erros e garantindo eficiência.</li>
+                <li>Integração com infraestrutura híbrida, permitindo que políticas de provisionamento sejam aplicadas de forma transparente para ambientes on-premises e cloud.</li>
+            </ul>
+
+            <p>
+                <strong>Tecnologias Utilizadas:</strong> Azure AD, Active Directory Híbrido, PowerShell, Microsoft 365, Defender for Business, Grupos Dinâmicos, SSO, Cloud Identity (GCP), regras de retenção de email, automação de provisionamento.
+            </p>
+        </article>
+      <article class="section" aria-labelledby="proj11">
+        <h2 id="proj11">Projeto de Imersão em Redes e Telecomunicações</h2>
+        <p>
+          Este projeto teve como objetivo proporcionar capacitação técnica e teórica para colaboradores internos da empresa, explorando o universo de redes e telecomunicações.
+          Além de ampliar a compreensão sobre o setor, a iniciativa também buscou alinhar os colaboradores aos produtos e soluções comercializados pela organização.
+        </p>
+        <p>
+          O programa foi estruturado em encontros quinzenais, com duração de duas horas, que abordavam desde conceitos básicos até tópicos mais avançados, sempre contextualizados
+          com aplicações práticas. A cada sessão, os materiais apresentados eram transformados em conteúdo digital, garantindo que o conhecimento fosse preservado e acessível.
+        </p>
+        <p><strong>Metodologia e Entregáveis:</strong></p>
+        <ul>
+          <li>Criação de glossário técnico e apostilas detalhadas.</li>
+          <li>Elaboração de conteúdos didáticos e apresentações interativas.</li>
+          <li>Gravação e edição das apresentações, publicadas em canal privado no YouTube.</li>
+          <li>Integração do conteúdo à plataforma Moodle para gestão do aprendizado.</li>
+          <li>Aplicação de provas e emissão de certificados digitais automáticos.</li>
+        </ul>
+        <p><strong>Resultados:</strong></p>
+        <ul>
+          <li>Alto índice de engajamento dos participantes.</li>
+          <li>Avaliação geral "muito bom", destacando aumento significativo no nível de conhecimento técnico.</li>
+          <li>Fortalecimento da cultura de aprendizado contínuo e alinhamento com os produtos da empresa.</li>
+        </ul>
+        <p>
+          <strong>Tecnologias e Recursos Utilizados:</strong> Moodle, YouTube (canal privado), produção de vídeo e edição, apresentações interativas, glossário e apostilas digitais.
+        </p>
+      </article>
+    </main>
+    <footer>
+      © 2025 Renato Rodrigues — Todos os direitos reservados.
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded",()=>{document.querySelector(".container").classList.add("visible")});
+  </script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Renato Rodrigues — Trajetória Profissional</title>
+  <style>
+    :root{
+      --card-bg: rgba(255,255,255,0.95);
+      --accent: #6c63ff;
+      --accent-2: #2b7ee6;
+      --radius: 12px;
+      --gap: 12px;
+      --text-muted: #555;
+    }
+    /* Box-sizing global */
+    *, *::before, *::after { box-sizing: border-box; }
+    /* GRADIENTE FIXO NO ELEMENTO html (para evitar "banding"/quebra ao rolar) */
+    html {
+      height: 100%;
+      background: linear-gradient(135deg, #071022 0%, #0b2a4a 35%, #2b7ee6 70%, #6c63ff 100%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    /* Body em fluxo normal (não flex) para evitar problemas de scroll */
+    html, body { margin:0; padding:0; }
+    body {
+      font-family: Inter, Arial, sans-serif;
+      color:#111;
+      min-height:100vh;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      /* espaço para não cortar o topo em telas pequenas; body é a área rolável */
+      padding: 40px 16px;
+      overflow-y: auto;
+    }
+    /* leve overlay sem blur para manter contraste sem causar artefatos */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(6,10,18,0.08);
+      pointer-events: none;
+    }
+    /* Container centralizado horizontalmente; sem overflow interno */
+    .container {
+      background: var(--card-bg);
+      padding:28px;
+      border-radius: var(--radius);
+      box-shadow:0 12px 40px rgba(12,20,30,0.18);
+      max-width:1100px;
+      width:94%;
+      margin: 0 auto;
+      transform: translateY(18px) scale(0.995);
+      opacity:0;
+      transition: transform 550ms cubic-bezier(.2,.9,.3,1), opacity 550ms ease;
+      will-change: transform, opacity;
+    }
+    .container.visible { transform: translateY(0) scale(1); opacity:1; }
+    header.page-header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:14px;
+      flex-wrap:wrap;
+    }
+    .avatar {
+      width:92px;
+      height:92px;
+      border-radius:50%;
+      object-fit:cover;
+      box-shadow: 0 8px 26px rgba(10,20,30,0.12);
+      border: 3px solid rgba(255,255,255,0.6);
+      background:#ddd;
+      flex:0 0 92px;
+    }
+    .title-wrap{ display:flex; flex-direction:column; gap:4px; min-width:0; }
+    h1 { margin:0; font-size:22px; word-break:break-word; color:#111; }
+    p.lead { margin:0; color:var(--text-muted); }
+    nav.top-actions{ margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .btn {
+      padding:8px 12px;
+      border-radius:8px;
+      text-decoration:none;
+      color:#fff;
+      font-weight:600;
+      background: linear-gradient(90deg,var(--accent),#5a50f0);
+      box-shadow: 0 8px 20px rgba(12,20,30,0.08);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(12,20,30,0.12); }
+    main { margin-top:18px; display:block; }
+    .content { width:100%; }
+    /* Justificar textos conforme pedido */
+    .content p,
+    .section p,
+    .timeline .item-body p,
+    .bottom-panel p {
+      text-align: justify;
+      color:var(--text-muted);
+      line-height:1.6;
+      margin: 0 0 12px 0;
+    }
+    .section { margin-bottom:18px; }
+    .section h2 { margin:0 0 12px 0; font-size:20px; color:var(--accent-2); }
+    .timeline { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+    .timeline li { display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap; }
+    .timeline time { flex:0 0 100px; font-weight:700; color:var(--accent-2); font-size:13px; }
+    .timeline .item-body {
+      background: rgba(10,15,30,0.10);
+      border-radius:8px;
+      padding:10px 12px;
+      box-shadow: 0 6px 18px rgba(12,20,30,0.03);
+      min-width:0;
+    }
+    .timeline .item-body h3{ margin:0 0 6px 0; font-size:15px; color:#222; }
+    /* Painel inferior (substitui a antiga sidebar) */
+    .bottom-panel {
+      margin-top:20px;
+      background: rgba(255,255,255,0.86);
+      border-radius:10px;
+      padding:16px;
+      box-shadow: 0 8px 24px rgba(12,20,30,0.06);
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+    }
+    .bp-col { flex:1 1 220px; min-width:200px; }
+    .bp-heading { margin:0 0 8px 0; color:var(--accent-2); font-size:15px; }
+    .bp-note { font-size:14px; color:var(--text-muted); margin:0 0 8px 0; }
+    /* Bloco decorativo para evitar imagens quebradas */
+    .bp-figure {
+      width:100%;
+      height:120px;
+      border-radius:8px;
+      background: repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0 8px, rgba(0,0,0,0.00) 8px 16px);
+      display:block;
+    }
+    footer { text-align:center; margin-top:14px; color:#999; font-size:13px; }
+    @media (max-width:880px){
+      header.page-header { align-items:flex-start; }
+      .bp-col { flex:1 1 100%; }
+    }
+    /* Em telas muito altas: ativa centramento vertical de forma segura (quando há espaço suficiente) */
+    @media (min-height:960px) {
+      body {
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding: 0; /* remove padding para centralizar perfeitamente */
+      }
+      .container { margin: 0 auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .container, .btn, body { transition: none !important; animation: none !important; }
+      body::before { backdrop-filter: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-labelledby="traj-title">
+    <header class="page-header">
+      <img class="avatar" src="avatar.png" alt="Avatar de Renato Rodrigues" loading="lazy" width="92" height="92">
+      <div class="title-wrap">
+        <h1 id="traj-title">Trajetória profissional — Renato Rodrigues</h1>
+        <p class="lead">Analista de Nuvem • Infraestrutura • Suporte • SysAdmin • BI e Automação</p>
+        <nav class="top-actions" aria-label="Ações da página">
+          <a class="btn" href="index.html" title="Voltar à página inicial">← Voltar</a>
+          <a class="btn" href="curriculum.pdf" title="Download do currículo" target="_blank" rel="noopener">📄 Baixar CV</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="content" aria-label="Descrição da trajetória">
+        <article class="section" aria-labelledby="sobre">
+          <h2 id="sobre">Resumo sobre minha trajetória</h2>
+          <p>
+            Minha jornada na Tecnologia da Informação começou aos 16 anos, em 2011, em uma assistência técnica local chamada "Cosmic", próxima à minha casa. Nesse ambiente aprendi na prática: atendimento ao cliente, diagnóstico e manutenção de computadores, notebooks e tablets, além da configuração de redes domésticas e suporte a dispositivos móveis. Essas experiências iniciais construíram a base técnica e o senso de responsabilidade que foram determinantes no meu desenvolvimento profissional.
+          </p>
+          <p>
+            Após concluir o ensino médio e iniciar a Graduação em Redes de Computadores, tive a oportunidade de estagiar na Tivit, empresa de soluções de tecnologia e BPO. Durante cerca de 1,7 anos atuei na torre de BPO prestando suporte HelpDesk ao cliente interno, com foco em hardware, software, telefonia e redes. Trabalhar em uma grande organização — com acesso a datacenters e processos de alta disponibilidade — ampliou minha visão analítica e minhas habilidades na resolução de incidentes em escala corporativa.
+          </p>
+          <p>
+            Em seguida, fui contratado pela Sumus Informática, empresa especializada em softwares de gestão de ativos e telefonia corporativa. Comecei como suporte N1 e, ao longo do tempo, evoluí para posições de nível pleno e sênior, assumindo também coordenação técnica, implantação, treinamentos e consultoria sênior. Nesse período aprofundei o trabalho com bancos de dados (Firebird, SQL Server, PostgreSQL, MySQL), administração de servidores Linux e Windows, integração com sistemas de telefonia e desenvolvimento de soluções para bilhetagem de PABX.
+          </p>
+          <p>
+            Além das atividades técnicas, produzi materiais didáticos (apostilas, vídeos e treinamentos) e conduzi projetos de implantação e capacitação em clientes por todo o Brasil. Tornei-me referência técnica na empresa, participando de pré-venda, atendimento a clientes estratégicos e mapeamento de melhorias nos produtos e processos.
+          </p>
+          <p>
+            Com a crescente adoção de modelos em nuvem (SaaS, IaaS, PaaS), busquei especialização em infraestrutura cloud. Fui contratado pela Mtrix Tecnologia (hoje parte da NielsenIQ) como Analista Cloud Júnior e rapidamente avancei em certificações e formações, incluindo especializações relacionadas à AWS, Azure e GCP. Minha atuação expandiu-se para migrações para a nuvem, administração de tenants Microsoft 365, gerenciamento de ambientes híbridos (AD DS x Entra ID), containerização, orquestração com Kubernetes e automação de processos.
+          </p>
+          <p>
+            Paralelamente, dediquei-me a projetos de Business Intelligence e pipelines de dados (ETL), desenvolvendo dashboards no Power BI para suportar decisões orientadas por métricas. Essas iniciativas ampliaram a visibilidade sobre impactos das melhorias implementadas e geraram reconhecimentos formais, bonificações e promoções na empresa.
+          </p>
+          <p>
+            Sou movido pela resolução de problemas complexos, pela automação de processos e pela transformação de dados em insights acionáveis. Trabalho com clareza, eficiência e foco em resultados, sempre buscando alinhar aspectos técnicos às necessidades do negócio.
+          </p>
+        </article>
+
+        <article class="section" aria-labelledby="timeline">
+          <h2 id="timeline">Linha do tempo</h2>
+          <ul class="timeline" aria-label="Linha do tempo profissional">
+            <li>
+              <time datetime="2011">2011–2014</time>
+              <div class="item-body">
+                <h3>Assistência Técnica Cosmic — Técnico de Informática</h3>
+                <p><strong>Atividades exercidas:</strong> Atendimento ao cliente; diagnóstico e orçamentação; manutenção corretiva e preventiva de computadores, notebooks e tablets; configuração de redes domésticas e suporte a dispositivos móveis; atendimento pós-venda e garantias (prazo obrigatório de 90 dias).</p>
+                <p><strong>Soft Skills:</strong> Comunicação com clientes, capacidade analítica, explicação técnica acessível ao usuário, priorização e cumprimento de prazos.</p>
+                <p><strong>Hard Skills:</strong> Configuração de Windows e Linux, manutenção de hardware, configuração de redes Wi‑Fi, instalação de aplicações e diagnóstico de componentes eletroeletrônicos.</p>
+              </div>
+            </li>
+
+            <li>
+              <time datetime="2014">2014–2016</time>
+              <div class="item-body">
+                <h3>Tivit (BPO) — Estágio</h3>
+                <p><strong>Atividades exercidas:</strong> Suporte HelpDesk ao cliente interno em hardware, software, telefonia corporativa e redes; trabalho com processos corporativos e operações em datacenter.</p>
+                <p><strong>Soft Skills:</strong> Atendimento em padrão corporativo (inclusive VIP), gestão de tempo, trabalho em equipe, participação em gerenciamento de incidentes e rotinas de crise.</p>
+                <p><strong>Hard Skills:</strong> Atuação conforme ITIL v3 na época; gestão de fila de chamados com SLAs; administração de sistemas Windows e Linux; instalação e configuração de soluções corporativas (Citrix, Office 365, Skype for Business); diagnóstico de redes e de telefonia (Avaya, Nice, entre outros).</p>
+              </div>
+            </li>
+
+            <li>
+              <time datetime="2016">2016–2023</time>
+              <div class="item-body">
+                <h3>Sumus Informática — Suporte N1 → Sênior / Coordenação Técnica</h3>
+                <p><strong>Atividades exercidas:</strong> Suporte a sistemas de gestão de ativos; análise de bancos de dados (Firebird, SQL Server, PostgreSQL e MySQL) para detecção de anomalias; implantação de sistemas; orientação ao cliente e condução de projetos. Desenvolvimento de drivers para leitura de CDR, criação de materiais didáticos e execução de projetos de implantação e treinamento em todo o Brasil. Participação em pré-vendas e mapeamento de customizações solicitadas por clientes.</p>
+                <p><strong>Soft Skills:</strong> Comunicação com clientes e parceiros, liderança técnica, gestão de projetos de implantação, elaboração e aplicação de treinamentos, organização de prazos e expectativas, resiliência e pensamento crítico.</p>
+                <p><strong>Hard Skills:</strong> Administração de Windows e Linux; manutenção de SGBDs; desenvolvimento de drivers para CDR (interpretação de máscaras e campos conforme documentação de PABX); troubleshooting em aplicações Java (Tomcat, JBoss); scripts em Node.js para coleta de dados; configuração de servidores FTP/SFTP e alertas via SMTP.</p>
+              </div>
+            </li>
+
+            <li>
+              <time datetime="2023">2023–Atual</time>
+              <div class="item-body">
+                <h3>Mtrix — Analista Cloud</h3>
+                <p><strong>Atividades exercidas:</strong> Migração de infra para cloud (Azure, GCP), administração de tenant Microsoft 365, gestão de usuários em ambiente híbrido (AD DS x Entra ID), automação, documentação, monitoramento e observabilidade. Desenvolvimento de scripts, pipelines de dados e dashboards orientados a métricas, com foco em automação e melhoria operacional tanto em ambientes on‑premises quanto em cloud.</p>
+                <p><strong>Soft Skills:</strong> Atendimento a usuários e clientes, gestão de incidentes, trabalho em squads multidisciplinares, priorização de demandas, comunicação técnica clara, foco em resultados e melhoria contínua.</p>
+                <p><strong>Hard Skills:</strong> Práticas ITIL; gestão de sprints; inventário e gestão de ativos; atendimento com SLAs; scripting em Bash e PowerShell; administração de sistemas Windows e Linux; integração com Microsoft 365, EDR e Intune; diagnóstico de redes e infraestrutura híbrida; governança e compliance (Microsoft Purview, Entra ID, MFA, SSO, Acesso Condicional); gerenciamento de portais Azure, 365 e Defender; provisionamento automático entre Entra ID e Identity/GCP quando aplicável.</p>
+                <p>Também trabalho com automações RPA (Power Automate, Power Automate Desktop), Rundeck, Ansible (playbooks e ad‑hoc), e ferramentas de versionamento via Git/Azure DevOps. Gerencio ambientes de BI (QlikView, Qlik Sense) e pipelines/ETL no Power BI Service (dataflows, mashups, modelos semânticos e dashboards publicados em portais corporativos como SharePoint). Participo de projetos de conectividade (VPN S2S Barracuda, Cloudflare, BGP), criação de políticas Zero Trust, coleta de logs e integração com ZTNA/WARP, além de governança de SaaS (por exemplo, MongoDB SaaS) e MDM para dispositivos corporativos.</p>
+                <p><strong>Responsabilidades adicionais:</strong> Criação de documentação técnica, acionamento de times e parceiros, gerenciamento de tickets e workflows, e coordenação de comunicação sobre serviços impactados.</p>
+              </div>
+            </li>
+          </ul>
+        </article>
+
+        <article class="section" aria-labelledby="conquistas">
+          <h2 id="conquistas">Conquistas e habilidades</h2>
+          <ul>
+            <li>Promoções e prêmios por desempenho e impacto em projetos.</li>
+            <li>Forte capacidade analítica para identificação e resolução de problemas.</li>
+            <li>Experiência em Linux, administração de servidores, redes e infraestrutura.</li>
+            <li>Prática com provedores de nuvem: AWS, Azure e GCP.</li>
+            <li>Desenvolvimento de scripts e automações para otimização operacional.</li>
+            <li>Habilidade em comunicação técnica e didática; produção de conteúdo e treinamentos.</li>
+            <li>Experiência em implantação e capacitação de clientes corporativos.</li>
+            <li>Conhecimento em metodologias ágeis e práticas DevOps.</li>
+            <li>Integração de sistemas e consumo de APIs.</li>
+            <li>Capacidade de atuar sob pressão e em ambientes dinâmicos.</li>
+            <li>Trabalho colaborativo com equipes multidisciplinares e stakeholders.</li>
+            <li>Proatividade na identificação de oportunidades de melhoria e inovação.</li>
+            <li>Comprometimento com resultados e eficiência operacional.</li>
+            <li>Conhecimento profundo em bancos de dados: Firebird, MySQL, PostgreSQL, SQL Server.</li>
+            <li>Criação de automações, pipelines de dados e dashboards (BI) para suporte à decisão.</li>
+            <li>Experiência em projetos de migração e modernização de infraestrutura.</li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- Painel inferior substitui a antiga sidebar (sem imagens quebradas) -->
+      <div class="bottom-panel" aria-label="Materiais e contatos">
+        <div class="bp-col">
+          <h4 class="bp-heading">Contatos</h4>
+          <p class="bp-note">
+            📞 WhatsApp: <a href="https://wa.me/5511968115925" style="color:var(--accent); text-decoration:none;" target="_blank" rel="noopener">+55 11 96811-5925</a><br>
+            ✉️ Email: <a href="mailto:renato.tec@outlook.com" style="color:var(--accent); text-decoration:none;">renato.tec@outlook.com</a>
+          </p>
+        </div>
+
+        <div class="bp-col">
+          <h4 class="bp-heading">Links úteis</h4>
+          <p class="bp-note">
+            <a href="https://www.linkedin.com/in/renato-rodrigues-a95645210/" style="color:var(--accent); text-decoration:none;" target="_blank" rel="noopener">LinkedIn</a><br>
+            <a href="https://github.com/ttattinho" style="color:var(--accent); text-decoration:none;" target="_blank" rel="noopener">GitHub</a><br>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      © 2025 Renato Rodrigues — RRS Manutenção
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      document.addEventListener('DOMContentLoaded', function(){
+        const container = document.querySelector('.container');
+        if(container) requestAnimationFrame(()=> container.classList.add('visible'));
+      });
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(!prefersReduced){
+        let rafId = null;
+        document.body.addEventListener('mousemove', function(e){
+          if(rafId) cancelAnimationFrame(rafId);
+          rafId = requestAnimationFrame(function(){
+            const x = (e.clientX / window.innerWidth - 0.5) * 6;
+            const y = (e.clientY / window.innerHeight - 0.5) * 4;
+            document.documentElement.style.backgroundPosition = (50 + x) + '% ' + (50 + y) + '%';
+          });
+        });
+        document.body.addEventListener('mouseleave', function(){ if(rafId) cancelAnimationFrame(rafId); document.documentElement.style.backgroundPosition = 'center'; });
+      }
+    })();
+  </script>
+</body>
+</html>

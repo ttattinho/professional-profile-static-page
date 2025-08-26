@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Renato Rodrigues — Projects</title>
+  <style>
+    :root {
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --accent: #6c63ff;
+      --accent-2: #2b7ee6;
+      --radius: 12px;
+      --gap: 12px;
+      --text-muted: #555;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html {
+      height: 100%;
+      scroll-behavior: smooth;
+      background: linear-gradient(135deg, #071022 0%, #0b2a4a 35%, #2b7ee6 70%, #6c63ff 100%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: Inter, Arial, sans-serif;
+      color: #111;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 40px 16px;
+      overflow-y: auto;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 10, 18, 0.08);
+      pointer-events: none;
+    }
+    .container {
+      background: var(--card-bg);
+      padding: 28px;
+      border-radius: var(--radius);
+      box-shadow: 0 12px 40px rgba(12, 20, 30, 0.18);
+      max-width: 1100px;
+      width: 94%;
+      margin: 0 auto;
+      transform: translateY(18px) scale(0.995);
+      opacity: 0;
+      transition: transform 550ms cubic-bezier(.2, .9, .3, 1), opacity 550ms ease;
+      will-change: transform, opacity;
+    }
+    .container.visible { transform: translateY(0) scale(1); opacity: 1; }
+    header.page-header {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .avatar {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 8px 26px rgba(10, 20, 30, 0.12);
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      background: #ddd;
+      flex: 0 0 92px;
+    }
+    .title-wrap { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    h1 { margin: 0; font-size: 22px; word-break: break-word; color: #111; }
+    p.lead { margin: 0; color: var(--text-muted); }
+    nav.top-actions { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .btn {
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      background: linear-gradient(90deg, var(--accent), #5a50f0);
+      box-shadow: 0 8px 20px rgba(12, 20, 30, 0.08);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(12, 20, 30, 0.12); }
+    main { margin-top: 18px; display: block; }
+    .content { width: 100%; }
+    .content p,
+    .section p { text-align: justify; color: var(--text-muted); line-height: 1.6; margin: 0 0 12px 0; }
+    .section { margin-bottom: 18px; }
+    .section h2 { margin: 0 0 12px 0; font-size: 20px; color: var(--accent-2); }
+    .index {
+      margin: 20px 0 30px 0;
+      padding: 16px;
+      background: rgba(240,240,255,0.7);
+      border-radius: var(--radius);
+    }
+    .index h3 { margin-top: 0; font-size: 18px; color: var(--accent); }
+    .index ul { margin: 0; padding-left: 18px; }
+    .index a { color: var(--accent-2); text-decoration: none; }
+    .index a:hover { text-decoration: underline; }
+    footer { text-align: center; margin-top: 14px; color: #999; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-labelledby="proj-title">
+    <header class="page-header">
+      <img class="avatar" src="avatar.png" alt="Avatar of Renato Rodrigues" loading="lazy" width="92" height="92">
+      <div class="title-wrap">
+        <h1 id="proj-title">Projects — Renato Rodrigues</h1>
+        <p class="lead">Cloud Analyst • Infrastructure • Support • SysAdmin • BI and Automation</p>
+        <nav class="top-actions" aria-label="Page actions">
+          <a class="btn" href="index.html">← Back</a>
+          <a class="btn" href="curriculum.pdf" target="_blank" rel="noopener">📄 Download CV</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="index">
+        <h3>Project Index</h3>
+        <ul>
+          <li><a href="#proj1">Creation of a Static Professional Profile Page</a></li>
+          <li><a href="#proj2">Integration of Azure Environment with Company Headquarters</a></li>
+          <li><a href="#proj3">Automation and Monitoring of the Critical QlikView Environment</a></li>
+          <li><a href="#proj4">Expansion of Automations for Corporate Environments and Services</a></li>
+          <li><a href="#proj5">Lift-and-Shift Migration to Cloud (Hyper-V → GCP/Azure)</a></li>
+          <li><a href="#proj6">Management Dashboard for Email Response Time — Finance</a></li>
+          <li><a href="#proj7">Commercial and Negotiation Dashboard — RD Station Integration</a></li>
+          <li><a href="#proj8">Inventory and License Control Dashboard — Microsoft 365 & Security</a></li>
+          <li><a href="#proj9">Mapping License Inconsistencies — QlikView and QlikSense</a></li>
+          <li><a href="#proj10">Hybrid Active Directory Automation — Dynamic Groups & Provisioning</a></li>
+          <li><a href="#proj11">Immersion Project in Networks and Telecommunications</a></li>
+        </ul>
+      </div>
+      <section class="content" aria-label="Project descriptions">
+        <article class="section" aria-labelledby="proj1">
+          <h2 id="proj1">Creation of a Static Professional Profile Page</h2>
+          <p>
+            This project involved creating a static page to present my professional profile using AWS cloud infrastructure.
+            Several technologies and services were used: Amazon S3 to host static files, CloudFront for content distribution with high availability and low latency,
+            Route 53 for domain management and ACM (AWS Certificate Manager) for SSL/TLS security. Pages were built with HTML, CSS and JavaScript following web development best practices.
+            Additionally, I used Artificial Intelligence during development to assist in code creation and to translate content into English,
+            enabling a more global reach.
+          </p>
+          <p>
+            <strong>Technologies Used:</strong> AWS S3, CloudFront, Route 53, ACM, HTML, CSS, JavaScript, AI for development and translation.
+          </p>
+        </article>
+        <article class="section" aria-labelledby="proj2">
+          <h2 id="proj2">Integration of Azure Environment with Company Headquarters</h2>
+          <p>
+            In this project we interconnected the Azure environment with the company's headquarters using a Virtual Gateway for site-to-site VPNs with BGP in an active-active model, routing links through Barracuda firewalls and configuring link weights for contingency.
+            A new AD DS instance with Windows Server 2025 was created in Azure and the service was added to the forest by raising the functional level. We migrated Entra ID Connect to the new AD DS instance and propagated Azure networks via BGP to partner datacenter networks,
+            reaching our other cloud environment in GCP. On the AD server in Azure, we configured the Power BI Data Gateway so dataflows could access private endpoints such as databases, Samba shares, Trino, MongoDB and others.
+            All VPN infrastructure was properly tagged and allocated into separate resource groups and connected via peering to the VPNs.
+          </p>
+          <p>
+            <strong>Technologies Used:</strong> Azure, Azure Virtual Gateway, BGP, Barracuda Firewall, AD DS, Windows Server 2025, Azure AD Connect, Power BI, GCP.
+          </p>
+        </article>
+        <article class="section" aria-labelledby="proj3">
+            <h2 id="proj3">Automation and Monitoring of the Critical QlikView Environment</h2>
+            <p>
+                QlikView powered the company’s main products, accessed daily by external customers for critical business reports and dashboards.
+                The infrastructure was based on a <strong>3-node Windows Server failover cluster</strong> connected to a <strong>shared storage</strong>.
+                Although designed for high availability, this legacy environment presented several fragilities in practice.
+            </p>
+            <p>
+                Main pain points included: manual maintenance processes, lengthy cluster and load balancing validations, difficulties restoring services after failures and limited monitoring that often only detected issues after customer complaints.
+                This required on-call shifts (including weekends), making QlikView the weakest link and creating high unavailability risk for customers.
+            </p>
+            <p>
+                Interim solutions such as manual checklists and isolated PowerShell/Bash scripts provided limited gains.
+                The turning point was implementing an <strong>automation and monitoring ecosystem</strong> orchestrated by <strong>Rundeck</strong>, running on an Ubuntu server in GCP connected via Interconnect to datacenters and partners.
+            </p>
+            <p>
+                The environment included scheduled and manual pipelines using multiple technologies: <strong>Bash</strong>, <strong>Python</strong>, <strong>PowerShell</strong>,
+                <strong>Node.js with Puppeteer</strong>, and <strong>Ansible (playbooks and ad-hoc via SSH and WinRM)</strong>. Implemented automations included:
+            </p>
+            <ul>
+                <li>Monitored and forced reboots via iDRAC in case of failure.</li>
+                <li>Automated movement of Cluster Shared Volumes (CSV) to maintain continuity.</li>
+                <li>Service startup and validation after reboots.</li>
+                <li>Integrity checks via QlikView Server health endpoints.</li>
+                <li>Load balancing tests with synthetic traffic generated by Puppeteer.</li>
+                <li>Chained error handlers to restart web services and recover clusters.</li>
+                <li>Continuous monitoring in Python validating product loads and triggering alerts via email and Microsoft Teams.</li>
+                <li>Recognition of known failures by hashing error screenshots and executing automatic fixes.</li>
+            </ul>
+            <p>
+                Additionally, a <strong>Rundeck credential vault</strong> was used to protect credentials and keys, and <strong>job-level variables</strong> were declared to promote code reuse and standardization.
+                All scripts included timeouts, retries and fail-safe mechanisms.
+            </p>
+            <p>
+                Job logs and statuses were integrated into Power BI Service data pipelines via Gateway, creating real-time failure and availability dashboards.
+                Code was versioned in Azure DevOps with Markdown documentation for each job and script.
+            </p>
+            <p>
+                The result was transformative: availability rose to <strong>99.997%</strong>, on-call duties were eliminated, and the team gained full predictability and visibility over the environment.
+                The team could focus on strategic projects while the legacy QlikView environment ceased to be a critical bottleneck.
+                The approach was later expanded to QlikSense servers with significant improvements as well.
+            </p>
+            <p>
+                <strong>Technologies Used:</strong> Rundeck, Ubuntu Server (GCP), Bash, Python, PowerShell, Node.js, Puppeteer, Ansible (SSH/WinRM), iDRAC, Power BI, Azure DevOps.
+            </p>
+        </article>
+        <article class="section" aria-labelledby="proj4">
+            <h2 id="proj4">Expansion of Automations for Corporate Environments and Services</h2>
+            <p>
+                Following the success of automating the legacy QlikView environment, we expanded the approach to other critical environments and services across the company.
+                The <strong>Ubuntu server with Rundeck</strong> hosted in GCP and connected via Interconnect with <strong>BGP</strong> already had access to corporate environments,
+                enabling centralization and standardization of automation execution.
+            </p>
+            <p>
+                The first focus was <strong>monitoring SQL Server jobs</strong>, which frequently hung. Pipelines were created to validate job execution and, when a hang was detected, automatically apply fixes based on previously mapped errors.
+                Corrections triggered email notifications and Teams alerts between IT Operations and Operations teams who were impacted by those specific job failures.
+            </p>
+            <p>
+                Active monitoring of <strong>FTP and SFTP services</strong> was also implemented, including tests for access, upload, write and connectivity to identify issues before they impacted customers and partners.
+            </p>
+            <p>
+                Another milestone was creating <strong>facilities jobs</strong> that automated day-to-day operational tasks previously done manually by interns or junior analysts.
+                This avoided the need to grant critical access to portals like GCP, Cloudflare and internal DNS.
+                Jobs required input variables, validated syntax and data coherence, and executed tasks in a controlled manner. Examples:
+            </p>
+            <ul>
+                <li>Automated download of files from GCP buckets.</li>
+                <li>DNS registration in Cloudflare with propagation testing and evidence generation for tickets.</li>
+                <li>Internal DNS registration with logs and audit trails.</li>
+            </ul>
+            <p>
+                For security, <strong>execution ACLs based on AD profiles</strong> were applied. Users authenticated via LDAP only saw jobs permitted to their group and could execute them only if input data passed validation.
+            </p>
+            <p>
+                The expansion also included <strong>integrated processes with Power BI Service</strong>: updating dataflows and datasets via Power Automate API, triggering pipeline steps automatically.
+                Jobs for <strong>server data cleanup</strong>, <strong>automatic log backups to GCP buckets</strong> and many other automations reduced manual effort and increased operational reliability.
+            </p>
+            <p>
+                As a result, the company evolved from manual and decentralized processes to a highly automated environment with standardization, security,
+                traceability and scalability. Gains were not only in availability and response time but also cultural, establishing automation as a core operational pillar.
+            </p>
+            <p>
+                <strong>Technologies Used:</strong> Rundeck, Ubuntu Server (GCP), Bash, Python, PowerShell, Node.js, Puppeteer, Ansible, SQL Server, FTP/SFTP,
+                Cloudflare API, GCP Storage, AD/LDAP, Power Automate, Power BI Service.
+            </p>
+        </article>
+        <article class="section" aria-labelledby="proj5">
+            <h2 id="proj5">Lift-and-Shift Migration to Cloud (Hyper-V → GCP/Azure)</h2>
+            <p>
+                Project to decommission the on-premises Hyper-V environment and perform a <strong>lift-and-shift</strong> migration of main servers to the cloud,
+                preserving application compatibility and configuring the new infrastructure with <strong>static IPs, automatic snapshots</strong> and preserved integrations.
+                Main scope: <strong>Rundeck</strong> and <strong>Bookstack (KB)</strong> migrated to <strong>GCP</strong>; <strong>OCS Inventory NG</strong> migrated to <strong>Azure</strong>.
+            </p>
+            <p><strong>Planning and Preparation</strong></p>
+            <ul>
+                <li>Inventory of servers, dependencies and application mapping in Hyper-V.</li>
+                <li>Definition of <strong>network architecture</strong> and <strong>static IP</strong> assignment per workload at destinations.</li>
+                <li>Creation of <strong>GCP buckets</strong> for staging images during migration.</li>
+                <li>Complete <strong>budgeting</strong> (storage, VMs, traffic, licenses) and presentation to responsible areas.</li>
+            </ul>
+            <p><strong>Execution and Conversions</strong></p>
+            <ul>
+                <li>Export of Hyper-V <strong>VHDX</strong> files and upload to migration project buckets.</li>
+                <li><strong>Disk conversion</strong> to formats required by destinations (e.g., VHDX → RAW/IMG → compatible with GCE/Azure).</li>
+                <li>Provisioning VMs in <strong>Google Compute Engine</strong> (Rundeck/Bookstack) and <strong>Azure</strong> (OCS Inventory NG), with static IPs and firewall rules.</li>
+                <li>Due to Linux version incompatibility on the OCS server, a <strong>rebuild of the Linux VM</strong> was performed and the <strong>MariaDB</strong> database migrated to the new environment.</li>
+            </ul>
+            <p><strong>Configuration and Tests</strong></p>
+            <ul>
+                <li>Connectivity validations (internal/external), database dependencies and integration checks.</li>
+                <li>Refactoring data pipelines for new IPs/hosts to ensure access to dependent databases and services.</li>
+                <li>DNS updates (Cloudflare and internal) to point to new IPs and controlled shutdown of old servers.</li>
+            </ul>
+            <p><strong>Service and Operational Adjustments</strong></p>
+            <ul>
+                <li>OS and application package <strong>updates</strong> during migration.</li>
+                <li>Installation of <strong>Webmin</strong> on Linux instances for browser-based administration.</li>
+                <li>Configuration of <strong>automatic snapshots</strong> for quick recovery.</li>
+            </ul>
+            <p><strong>Results</strong></p>
+            <ul>
+                <li>Consolidation in cloud with <strong>high availability</strong> and <strong>simplified recovery</strong> via snapshots.</li>
+                <li>Modernization of the technology stack and elimination of dependence on local hardware.</li>
+                <li>Standardization and simplified management via Webmin and adjusted data pipelines.</li>
+                <li>OCS Inventory NG redeployed and fully operational in Azure with MariaDB migrated.</li>
+            </ul>
+            <p>
+                <strong>Technologies Used:</strong> Hyper-V, VHDX, Google Cloud Platform (Compute Engine, Cloud Storage), Microsoft Azure, static IP, Cloudflare DNS, internal DNS,
+                Webmin, Linux, Windows Server, LDAP/AD, Rundeck, Bookstack, OCS Inventory NG, MariaDB, automatic snapshots, data pipelines.
+            </p>
+        </article>
+        <article class="section" aria-labelledby="proj6">
+            <h2 id="proj6">Management Dashboard for Monitoring Email Response Time — Finance</h2>
+            <p>
+                This project originated from the finance team's need to monitor and manage response times for emails sent to the team's standard address.
+                The goal was to provide the area manager with a clear view of SLA, efficiency and per-customer handling.
+            </p>
+            <p><strong>Planning and Design</strong></p>
+            <ul>
+                <li>Creation of an <strong>Azure Entra ID app</strong> for secure authentication and permissions to access the Exchange API.</li>
+                <li>Granting the necessary permissions to read email metadata without exposing sensitive content.</li>
+                <li>Definition of management metrics: response time, SLA, business days, holidays, view by customer and by email.</li>
+            </ul>
+            <p><strong>ETL and Data Processing</strong></p>
+            <ul>
+                <li>Connection to Exchange API to extract email metadata (sender, recipient, send/receive timestamps, subject, etc.).</li>
+                <li>Development of <strong>dataflows in Power BI Service</strong> to perform ETL: filter, clean and transform data for relevant analyses.</li>
+                <li>Application of rules to calculate response time considering business days, holidays and SLA defined by the manager.</li>
+            </ul>
+            <p><strong>Management Dashboard</strong></p>
+            <ul>
+                <li>Creation of interactive dashboards in Power BI Service, with charts, detailed email lists and key performance indicators (KPIs).</li>
+                <li>Dynamic filters by customer, email and period.</li>
+                <li>Automatic updates via scheduling, keeping data current without manual intervention.</li>
+                <li>Calculated metrics: average response time, pending emails, emails responded within SLA, individual performance per owner.</li>
+            </ul>
+            <p><strong>Results and Benefits</strong></p>
+            <ul>
+                <li>Complete visibility of the finance team's email handling performance.</li>
+                <li>Reduced manual analysis and monitoring time for the manager.</li>
+                <li>Easy identification of bottlenecks and customers with higher demand.</li>
+                <li>Project delivered successfully, generating positive feedback and increased confidence in data-driven strategic decisions.</li>
+            </ul>
+            <p>
+                <strong>Technologies Used:</strong> Azure Entra ID, Exchange Online API, Power BI Service, Power BI Dataflows, ETL, interactive dashboards, SLA calculations and management metrics.
+            </p>
+        </article>
+        <article class="section" aria-labelledby="proj7">
+            <h2 id="proj7">Commercial and Negotiation Dashboard — RD Station Integration</h2>
+            <p>
+                Project requested by the commercial area to fill gaps in analysis and specific views that were not directly available in RD Station.
+                The goal was to generate strategic insights for Sales, Finance and Executive Management, centralizing information in Power BI Service dashboards.
+            </p>
+            <p><strong>Planning and Design</strong></p>
+            <ul>
+                <li>Mapping RD Station API endpoints relevant to sales, negotiations and opportunities.</li>
+                <li>Controls to avoid <strong>rate limits</strong> and excessive requests, ensuring ETL process stability.</li>
+                <li>Development of an <strong>API monitoring dashboard</strong> with alerts about approaching request limits to enable preventive action.</li>
+                <li>Separation of <strong>dimension dataflows</strong> and <strong>fact dataflows</strong> for organization and later consolidation in the dataset.</li>
+            </ul>
+            <p><strong>ETL and Data Processing</strong></p>
+            <ul>
+                <li>Advanced ETL to clean, transform and unify data, creating complex measures and indicators.</li>
+                <li>Historical capture of negotiations via <strong>Power Automate</strong>, calling the API weekly to retrieve previous states.</li>
+                <li>Storage of semi-structured JSON files in SharePoint with access control, avoiding NoSQL complexity.</li>
+                <li>Mashups inside Power BI Service dataflows to consolidate historical and current data, allowing analysis of date, value and negotiation changes.</li>
+            </ul>
+            <p><strong>Dashboard and Power BI App</strong></p>
+            <ul>
+                <li>Interactive dashboards with KPIs, charts and advanced indicators.</li>
+                <li>Detailed filters by seller, customer, lost deals, time periods and other relevant criteria.</li>
+                <li>An app within Power BI Service centralizing all commercial area analyses.</li>
+                <li>Automated updates via Power Automate to ensure shared Azure server data was refreshed regularly, even under instability.</li>
+            </ul>
+            <p><strong>Results and Benefits</strong></p>
+            <ul>
+                <li>The dashboard became the central reference for commercial strategic meetings.</li>
+                <li>Ability to analyze past negotiations, price changes and delays, providing actionable insights.</li>
+                <li>API monitoring ensures ETL continuity and prevents interruptions in the data flow.</li>
+                <li>Support for sales, finance and executive decisions, making the project a pillar of data analysis.</li>
+            </ul>
+            <p>
+                <strong>Technologies Used:</strong> Power BI Service, Power BI Dataflows, Power Automate, SharePoint, RD Station API, ETL, JSON, interactive dashboards, KPIs, API monitoring.
+            </p>
+        </article>
+        <article class="section" aria-labelledby="proj8">
+            <h2 id="proj8">Inventory and License Control Dashboard — Microsoft 365 & Security</h2>
+            <p>
+                Project aimed at centralizing and automating inventory and license control, as well as monitoring security resources like Intune, Defender and Defender for Endpoint Server.
+                The goal was to provide comprehensive management reports for Finance and IT, giving visibility into costs, usage and registry inconsistencies.
+            </p>
+            <p><strong>Planning and Design</strong></p>
+            <ul>
+                <li>Creation of an <strong>Azure Entra ID app</strong> for secure authentication and endpoint access.</li>
+                <li>Mapping Microsoft endpoints (users, licenses, direct managers, roles and registry metadata).</li>
+                <li>Integration with <strong>OCS Inventory NG's MariaDB</strong>, the <strong>Bookstack API</strong> (corporate KB) and <strong>Kanbanize</strong> (card system) for cross-referencing information.</li>
+                <li>Building advanced data mashups to consolidate user, machine, license and cost information.</li>
+            </ul>
+            <p><strong>ETL and Data Processing</strong></p>
+            <ul>
+                <li>Creation of dataflows in <strong>Power BI Service</strong> to transform, clean and consolidate data.</li>
+                <li>Automated cross-referencing to produce financial reports for Microsoft 365 license allocation and inventory, considering depreciation, warranty, brand, model and device condition.</li>
+                <li>Querying Microsoft endpoints to obtain <strong>SKUID</strong> table and generate friendly names for reports.</li>
+                <li>Development of per-department and per-user cost calculations with detailed resource and license cost views.</li>
+            </ul>
+            <p><strong>Data Monitoring and Governance</strong></p>
+            <ul>
+                <li>Implementation of an inconsistency monitoring system identifying:
+                <ul>
+                    <li>Names out of standard</li>
+                    <li>Unused or depreciated machines</li>
+                    <li>Devices assigned to more than one person</li>
+                    <li>Outdated operating systems</li>
+                    <li>Users without manager, department or KB profile</li>
+                    <li>Name mismatches in Kanbanize</li>
+                </ul>
+                </li>
+                <li>Daily alerts sent by email to the responsible team for quick correction and to keep the environment organized.</li>
+            </ul>
+            <p><strong>Dashboard and Reports</strong></p>
+            <ul>
+                <li>Interactive dashboards published on <strong>SharePoint</strong> for detailed inventory, license and cost views.</li>
+                <li>Managed and automated reports for Finance with scheduled distribution.</li>
+                <li>Compliance and inventory health indicators, improving governance and reducing registry errors.</li>
+            </ul>
+            <p><strong>Results and Benefits</strong></p>
+            <ul>
+                <li>Complete visibility of the technology park and Microsoft 365 licenses, with cost and usage breakdowns.</li>
+                <li>Proactive detection of inconsistencies and registry issues, preventing audit and financial process failures.</li>
+                <li>Automated reports and dashboards reducing manual compilation and analysis time.</li>
+                <li>Centralized information in dashboards and SharePoint enabling faster, more reliable strategic decisions.</li>
+            </ul>
+            <p>
+                <strong>Technologies Used:</strong> Azure Entra ID, Power BI Service, Power BI Dataflows, MariaDB (OCS Inventory), Bookstack API, Kanbanize API, SharePoint, interactive dashboards, inconsistency monitoring, advanced ETL.
+            </p>
+        </article>
+        <article class="section" aria-labelledby="proj9">
+            <h2 id="proj9">Mapping License Inconsistencies — QlikView and QlikSense</h2>
+            <p>
+                Project aimed at identifying and correcting inconsistencies in QlikView and QlikSense license assignments to avoid exceeding contracted licenses and to ensure active users have proper access.
+            </p>
+            <p><strong>Planning and Design</strong></p>
+            <ul>
+                <li>Identification of issues: deactivated users still assigned licenses and active users without licenses.</li>
+                <li>Definition of extraction and cross-referencing processes between systems to produce inconsistency reports.</li>
+            </ul>
+            <p><strong>Automation with Rundeck</strong></p>
+            <ul>
+                <li>All reports were extracted via <strong>Rundeck jobs</strong>, ensuring scheduled and manual execution when needed.</li>
+                <li>AD and application user reports were collected automatically and saved to Samba shares or CSV files.</li>
+                <li>These datasets were consumed by <strong>Power BI Service</strong> to cross-check active users against assigned licenses and generate consistent paginated reports.</li>
+            </ul>
+            <p><strong>QlikSense</strong></p>
+            <ul>
+                <li>Rundeck connected to QlikSense's PostgreSQL database and extracted licensed users.</li>
+                <li>Reports were combined with active OU users from AD and sent to Power BI Service via Azure Data Gateway.</li>
+                <li>Daily paginated reports were generated and distributed to the responsible team for proactive license correction.</li>
+            </ul>
+            <p><strong>QlikView</strong></p>
+            <ul>
+                <li>Because there was no API or direct database access, a <strong>Node.js script with Puppeteer</strong> was created to access QMC, navigate to licensed users and export the HTML table to CSV.</li>
+                <li>The CSV was processed similarly: crossed with AD, consumed by Power BI Service and used to generate a daily paginated report.</li>
+            </ul>
+            <p><strong>Results and Benefits</strong></p>
+            <ul>
+                <li>Effective control of QlikView and QlikSense licenses, preventing contract overruns.</li>
+                <li>Complete automation of data collection and processing via Rundeck, reducing manual errors.</li>
+                <li>Consistent automatic reports in Power BI Service enabling proactive license maintenance.</li>
+                <li>Integration with management dashboards for continuous analysis and monitoring.</li>
+            </ul>
+            <p>
+                <strong>Technologies Used:</strong> Rundeck, PostgreSQL, Node.js, Puppeteer, Power BI Service, Azure Data Gateway, Active Directory, CSV, report automation, data mashups.
+            </p>
+        </article>
+        <article class="section" aria-labelledby="proj10">
+            <h2 id="proj10">Hybrid Active Directory Automation — Dynamic Groups & Provisioning</h2>
+            <p>
+                Project focused on automating hybrid Active Directory management by synchronizing additional fields and enabling dynamic groups based on user metadata rules.
+            </p>
+            <p><strong>Planning and Design</strong></p>
+            <ul>
+                <li>Synchronization of additional local AD fields to Azure AD, expanding automation and provisioning possibilities.</li>
+                <li>Creation of <strong>dynamic groups</strong> based on rules derived from user metadata.</li>
+                <li>Automation of user provisioning to <strong>SSO and third-party applications</strong>, including auto-provisioning systems like GCP's <strong>Cloud Identity</strong>.</li>
+            </ul>
+            <p><strong>Integration with Microsoft 365</strong></p>
+            <ul>
+                <li>Dynamic groups feed both <strong>security groups</strong> and <strong>mail-enabled groups</strong> in Microsoft 365.</li>
+                <li>Automatic assignment of Microsoft 365 licenses and Defender for Business based on dynamic group membership.</li>
+                <li>Implementation of retention rules and management of mail group size limits to prevent delivery issues caused by excessive members.</li>
+            </ul>
+            <p><strong>Automation and Benefits</strong></p>
+            <ul>
+                <li>Reduction of manual work in group and license administration.</li>
+                <li>Ensured consistency and compliance with security and provisioning policies.</li>
+                <li>Full automation of licensing, SSO and group management processes, minimizing errors and increasing efficiency.</li>
+                <li>Integration with hybrid infrastructure, allowing provisioning policies to be applied transparently across on-premises and cloud environments.</li>
+            </ul>
+            <p>
+                <strong>Technologies Used:</strong> Azure AD, Hybrid Active Directory, PowerShell, Microsoft 365, Defender for Business, Dynamic Groups, SSO, Cloud Identity (GCP), email retention rules, provisioning automation.
+            </p>
+        </article>
+      <article class="section" aria-labelledby="proj11">
+        <h2 id="proj11">Immersion Project in Networks and Telecommunications</h2>
+        <p>
+          This project aimed to provide technical and theoretical training for internal employees, exploring networks and telecommunications.
+          Besides increasing sector understanding, the initiative aligned participants with the products and solutions sold by the organization.
+        </p>
+        <p>
+          The program was structured as biweekly two-hour sessions covering topics from basics to advanced subjects, always contextualized with practical applications.
+          Each session's materials were converted into digital content to ensure knowledge preservation and accessibility.
+        </p>
+        <p><strong>Methodology and Deliverables:</strong></p>
+        <ul>
+          <li>Creation of a technical glossary and detailed handouts.</li>
+          <li>Development of didactic content and interactive presentations.</li>
+          <li>Recording and editing presentations, published on a private YouTube channel.</li>
+          <li>Integration of content into a Moodle platform for learning management.</li>
+          <li>Application of exams and automatic issuance of digital certificates.</li>
+        </ul>
+        <p><strong>Results:</strong></p>
+        <ul>
+          <li>High participant engagement rates.</li>
+          <li>Overall rating "very good", highlighting a significant increase in technical knowledge.</li>
+          <li>Strengthening of a continuous learning culture and alignment with company products.</li>
+        </ul>
+        <p>
+          <strong>Technologies and Resources Used:</strong> Moodle, YouTube (private channel), video production and editing, interactive presentations, glossary and digital handouts.
+        </p>
+      </article>
+    </main>
+    <footer>
+      © 2025 Renato Rodrigues — All rights reserved.
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded",()=>{document.querySelector(".container").classList.add("visible")});
+  </script>
+</body>
+</html>

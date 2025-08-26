@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Renato Rodrigues — Professional</title>
+  <style>
+    :root {
+      --card-bg: rgba(255, 255, 255, 0.80);
+      --accent: #6c63ff;
+      --radius: 12px;
+      --gap: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    body {
+      font-family: Inter, Arial, sans-serif;
+      color: #111;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #071022 0%, #0b2a4a 50%, #4b9cff 100%);
+      transition: background-position 400ms ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-y: auto;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 10, 18, 0.3);
+      pointer-events: none;
+      backdrop-filter: blur(2px);
+    }
+    .card {
+      background: var(--card-bg);
+      padding: 28px;
+      padding-inline: 28px;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(12, 20, 30, 0.18);
+      max-width: 560px;
+      width: 92%;
+      margin-top: 20px;
+      transform: scale(0.995);
+      opacity: 0;
+      transition: transform 550ms cubic-bezier(.2, .9, .3, 1), opacity 550ms ease;
+      will-change: transform, opacity;
+      overflow: visible;
+    }
+    .card.visible {
+      transform: scale(1);
+      opacity: 1;
+    }
+    .flags {
+      display: flex;
+      justify-content: end;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+    .flag-container {
+      text-align: center;
+      margin-right: 10px;
+    }
+    .flag {
+      width: 32px;
+      height: 24px;
+      cursor: pointer;
+      transition: transform 200ms ease;
+    }
+    .flag:hover {
+      transform: translateY(-2px) scale(1.1);
+    }
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 16px;
+      object-fit: cover;
+      box-shadow: 0 6px 18px rgba(10, 20, 30, 0.12);
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      background: #ddd;
+      transition: transform 300ms ease, box-shadow 300ms ease;
+    }
+    .avatar:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(10, 20, 30, 0.16);
+    }
+    h1 { margin: 0 0 6px; text-align: center; font-size: 22px; }
+    p { text-align: center; margin: 0 0 18px; color: #555; }
+    .links { display: flex; flex-direction: column; gap: var(--gap); margin-top: 6px; }
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 600;
+      transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+      box-shadow: 0 6px 18px rgba(12, 20, 30, 0.08);
+      box-sizing: border-box;
+      max-width: 100%;
+      word-break: break-word;
+    }
+    .btn:active { transform: translateY(1px) scale(0.998); }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(12, 20, 30, 0.12); }
+    .whatsapp { background: #25D366; }
+    .email { background: linear-gradient(90deg, #6c63ff, #5a50f0); }
+    .linkedin { background: #0a66c2; }
+    .github { background: #24292e; }
+    .cv { background: #FF8C42; }
+    .cert { background: #00A3E0; }
+    .link-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 12px;
+      flex-wrap: wrap;
+      padding-inline: 8px;
+    }
+    .link-row .link-more,
+    .link-row .link-traj {
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      line-height: 1;
+      background: #444;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      box-sizing: border-box;
+    }
+    .link-row .link-traj { background: linear-gradient(90deg, #4b9cff, #2b7ee6); }
+    .link-row .link-more:hover,
+    .link-row .link-traj:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(12, 20, 30, 0.12);
+    }
+    .row {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 460px) {
+      .card {
+        padding: 20px 16px;
+        width: 96%;
+        margin-top: 10px;
+      }
+      .links { gap: 8px; }
+      .row { gap: 8px; }
+      .btn {
+        justify-content: center;
+        width: 100%;
+      }
+      .link-row {
+        flex-direction: column;
+        gap: 8px;
+        padding-inline: 4px;
+      }
+      .link-row .link-more, .link-row .link-traj {
+        width: 100%;
+        text-align: center;
+      }
+      .flags {
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+    }
+    footer { text-align: center; margin-top: 14px; color: #999; font-size: 13px; }
+    @media (prefers-reduced-motion: reduce) {
+      .card, .btn, body { transition: none !important; animation: none !important; }
+      body::before { backdrop-filter: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main" aria-labelledby="nome">
+    <div class="flags">
+      <div class="flag-container">
+        <a href="index.html" title="Português">
+          <img src="brazil-flag.png" alt="Bandeira do Brasil" class="flag">
+        </a>
+        <div style="font-size: 11px; font-weight: bold;">PT-BR</div>
+      </div>
+      <div class="flag-container">
+        <a href="index_en-us.html" title="English">
+          <img src="us-flag.png" alt="Bandeira dos Estados Unidos" class="flag">
+        </a>
+        <div style="font-size: 11px; font-weight: bold;">EN-US</div>
+      </div>
+    </div>
+    <img class="avatar" src="avatar.png" alt="Avatar de Renato Rodrigues" loading="lazy" width="96" height="96">
+    <h1 id="nome">Renato Rodrigues</h1>
+    <p>Analista de Cloud | Analista de Infraestrutura | Analista de IT Operations | SysAdmin | Analista Desenvolvedor BI</p>
+    <div class="links">
+      <a class="btn whatsapp" href="https://wa.me/5511968115925?text=Olá%20Renato%21%20Gostaria%20de%20saber%20mais%20sobre%20seus%20serviços." target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a class="btn email" href="mailto:renato.tec@outlook.com?subject=Contato%20via%20site&body=Olá%20Renato%2C%0A%0AGostaria%20de%20saber%20mais..." target="_blank" rel="noopener">✉️ Email</a>
+      <a class="btn linkedin" href="https://www.linkedin.com/in/renato-rodrigues-a95645210/" target="_blank" rel="noopener">🔗 LinkedIn</a>
+      <a class="btn github" href="https://github.com/ttattinho" target="_blank" rel="noopener">🐙 GitHub</a>
+      <a class="btn cv" href="curriculum.pdf" target="_blank" rel="noopener">📄 Currículo Vitae</a>
+      <a class="btn cert" href="https://www.linkedin.com/in/renato-rodrigues-a95645210/details/certifications/" target="_blank" rel="noopener">🎖️ Certificações</a>
+    </div>
+    <div class="link-row" role="navigation" aria-label="Links adicionais">
+      <a class="link-more" href="projects.html" title="Portfólio de Projetos Desenvolvidos">Portfólio de Projetos Desenvolvidos</a>
+      <a class="link-traj" href="about.html" title="Trajetória profissional">Trajetória Profissional</a>
+    </div>
+    <footer>© 2025 Renato Rodrigues — RRS Manutenção</footer>
+  </div>
+  <script>
+    (function(){
+      document.addEventListener('DOMContentLoaded', function(){
+        const card = document.querySelector('.card');
+        if(card) requestAnimationFrame(() => card.classList.add('visible'));
+      });
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(!prefersReduced){
+        let rafId = null;
+        document.body.addEventListener('mousemove', function(e){
+          if(rafId) cancelAnimationFrame(rafId);
+          rafId = requestAnimationFrame(function(){
+            const x = (e.clientX / window.innerWidth - 0.5) * 6;
+            const y = (e.clientY / window.innerHeight - 0.5) * 4;
+            document.body.style.backgroundPosition = (50 + x) + '% ' + (50 + y) + '%';
+          });
+        });
+        document.body.addEventListener('mouseleave', function(){ if(rafId) cancelAnimationFrame(rafId); document.body.style.backgroundPosition = 'center'; });
+      }
+      const buttons = document.querySelectorAll('.btn, .link-more, .link-traj');
+      buttons.forEach(btn => {
+        btn.addEventListener('focus', () => btn.style.boxShadow = '0 12px 30px rgba(12,20,30,0.14)');
+        btn.addEventListener('blur', () => btn.style.boxShadow = '');
+      });
+    })();
+  </script>
+</body>
+</html>
